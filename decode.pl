@@ -60,8 +60,10 @@ while( sysread($input, $new, 255) and $buf .= $new ) {
 
 		$_ &= 0x7f foreach(@data); # Unset high bit
 
-
-		unless( array_equal([@data[0..6]], [0x1e, 0x04, 0x04, 0x50, 0x05, 0x00, 0x6e] ) ) { print STDERR "Unknown data in bytes 0-6: ", hexdump(@data[0..6]), "\n"; }
+		# iMax Quattro B6
+		#unless( array_equal([@data[0..6]], [0x1e, 0x04, 0x04, 0x50, 0x05, 0x00, 0x6e] ) ) { print STDERR "Unknown data in bytes 0-6: ", hexdump(@data[0..6]), "\n"; }
+		# B6AC
+		unless( array_equal([@data[0..6]], [0x1a, 0x04, 0x04, 0x2d, 0x0a, 0x00, 0x64] ) ) { print STDERR "Unknown data in bytes 0-6: ", hexdump(@data[0..6]), "\n"; }
 		unless( ($data[7] & 0xee) == 0x00 ) { print STDERR "Unknown state in byte 7: ", hexdump($data[7]), "\n"; }
 		my $cycle = ($data[7] & 0x10) >> 4;
 		my $direction = ( ($data[7] & 0x01) ? 1 : -1 );
