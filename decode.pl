@@ -56,6 +56,7 @@ while( sysread($input, $new, 255) and $buf .= $new ) {
 		my $their_sum = (($data[72] & 0x0f) << 4) | ($data[73] & 0x0f);
 		if( $sum != $their_sum ) {
 			print STDERR "Checksum error: received $their_sum, calculated $sum\n";
+			next;
 		}
 
 		$_ &= 0x7f foreach(@data); # Unset high bit
