@@ -43,6 +43,17 @@ class imaxb6_packet {
     double li_discharge_current();
     uint8_t li_discharge_cell_count();
     double * li_cell_voltages();
+    // Pb
+    double pb_charge_current();
+    uint8_t pb_cell_count();
+    // NiCd
+    double nicd_charge_current();
+    double nicd_discharge_current();
+    double nicd_discharge_voltage();
+    // NiMH
+    double nimh_charge_current();
+    double nimh_discharge_current();
+    double nimh_discharge_voltage();
 };
 
 #endif

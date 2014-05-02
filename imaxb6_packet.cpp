@@ -314,6 +314,8 @@ uint8_t imaxb6_packet::minutes() {
   return raw_data[IMAXB6_DATA_POS_TIME] & 0x7F;
 }
 
+// Li
+
 uint8_t imaxb6_packet::li_charge_cell_count() {
   return raw_data[IMAXB6_DATA_POS_LI_CHARGE_CELL_COUNT] & 0x7F;
 }
@@ -335,4 +337,48 @@ double * imaxb6_packet::li_cell_voltages() {
   for(cell=0 ; cell < IMAXB6_LI_MAX_CELLS ; cell++)
     voltages[cell] = read_double(IMAXB6_DATA_POS_LI_CELL1_V+cell*2);
   return voltages;
+}
+
+// Pb
+
+double imaxb6_packet::pb_charge_current(){
+  return (double)(raw_data[IMAXB6_DATA_POS_PB_CHARGE_CURRENT] & 0x7F)/10.0;
+}
+
+uint8_t imaxb6_packet::pb_cell_count(){
+  return raw_data[IMAXB6_DATA_POS_PB_CELL_COUNT] & 0x7F;
+}
+
+// NiCd
+
+double imaxb6_packet::nicd_charge_current(){
+  return (double)( raw_data[IMAXB6_DATA_POS_NICD_CHARGE_CURRENT] & 0x7F ) /10.0;
+}
+
+double imaxb6_packet::nicd_discharge_current(){
+  return (double)( raw_data[IMAXB6_DATA_POS_NICD_DISCHARGE_CURRENT] & 0x7F ) /10.0;
+}
+
+double imaxb6_packet::nicd_discharge_voltage(){
+  double v0, v1;
+  v0 = (double)(raw_data[IMAXB6_DATA_POS_NICD_DISCHARGE_DAVOL] & 0x7F);
+  v1 = (double)(raw_data[IMAXB6_DATA_POS_NICD_DISCHARGE_CVOL] & 0x7F);
+  return v0*10.0 + v1/10.0;
+}
+
+// NiMH
+
+double imaxb6_packet::nimh_charge_current(){
+  return (double)( raw_data[IMAXB6_DATA_POS_NIMH_CHARGE_CURRENT] & 0x7F ) /10.0;
+}
+
+double imaxb6_packet::nimh_discharge_current(){
+  return (double)( raw_data[IMAXB6_DATA_POS_NIMH_DISCHARGE_CURRENT] & 0x7F ) /10.0;
+}
+
+double imaxb6_packet::nimh_discharge_voltage(){
+  double v0, v1;
+  v0 = (double)(raw_data[IMAXB6_DATA_POS_NIMH_DISCHARGE_DAVOL] & 0x7F);
+  v1 = (double)(raw_data[IMAXB6_DATA_POS_NIMH_DISCHARGE_CVOL] & 0x7F);
+  return v0*10.0 + v1/10.0;
 }
