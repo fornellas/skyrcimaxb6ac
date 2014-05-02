@@ -60,7 +60,8 @@
 #define IMAXB6_DATA_POS_CHARGE_DAH              42
 #define IMAXB6_DATA_POS_CHARGE_MAH              43
 // time in minutes
-#define IMAXB6_DATA_POS_TIME                    69
+#define IMAXB6_DATA_POS_TIME_CMINS              68
+#define IMAXB6_DATA_POS_TIME_MINS               69
 
 // Pb charge current in dA
 #define IMAXB6_DATA_POS_PB_CHARGE_CURRENT       20
@@ -126,7 +127,6 @@
 #define IMAXB6_DATA_POS_65 0x80
 #define IMAXB6_DATA_POS_66 0x80
 #define IMAXB6_DATA_POS_67 0x80
-#define IMAXB6_DATA_POS_68 0x80
 #define IMAXB6_DATA_POS_70 0x8F
 #define IMAXB6_DATA_POS_71 0xA4
 
@@ -212,8 +212,6 @@ void imaxb6_packet::assert_fixed_bytes() {
     throw "Unknown data at 66.";
   if(raw_data[67] != IMAXB6_DATA_POS_67)
     throw "Unknown data at 67.";
-  if(raw_data[68] != IMAXB6_DATA_POS_68)
-    throw "Unknown data at 68.";
   if(raw_data[70] != IMAXB6_DATA_POS_70)
     throw "Unknown data at 70.";
   if(raw_data[71] != IMAXB6_DATA_POS_71)
@@ -309,8 +307,11 @@ double imaxb6_packet::battery_charge() {
   return read_double(IMAXB6_DATA_POS_CHARGE_DAH)*100.0;
 }
 
-uint8_t imaxb6_packet::minutes() {
-  return raw_data[IMAXB6_DATA_POS_TIME] & 0x7F;
+uint16_t imaxb6_packet::minutes() {
+  uint16_t min;
+  min = raw_data[IMAXB6_DATA_POS_TIME_MINS] & 0x7F;
+  min += (raw_data[IMAXB6_DATA_POS_TIME_CMINS] & 0x7F) * 100;
+  return min;
 }
 
 // Li

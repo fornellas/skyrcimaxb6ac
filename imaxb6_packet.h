@@ -36,7 +36,7 @@ class imaxb6_packet {
     double battery_voltage();
     double battery_current();
     double battery_charge();
-    uint8_t minutes();
+    uint16_t minutes();
     // LiPo / LiIo / LiFe
     uint8_t li_charge_cell_count();
     double li_charge_current();
