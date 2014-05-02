@@ -168,57 +168,56 @@ void imaxb6_packet::basic_validation(){
 
 void imaxb6_packet::assert_fixed_bytes() {
   // Fixed bytes
-  const char *err_fixed_byte = "Unknown data.";
   if(raw_data[10] != IMAXB6_DATA_POS_10)
-    throw err_fixed_byte;
+    throw "Unknown data at 10.";
   if(raw_data[11] != IMAXB6_DATA_POS_11)
-    throw err_fixed_byte;
+    throw "Unknown data at 11.";
   if(raw_data[28] != IMAXB6_DATA_POS_28)
-    throw err_fixed_byte;
+    throw "Unknown data at 28.";
   if(raw_data[29] != IMAXB6_DATA_POS_29)
-    throw err_fixed_byte;
+    throw "Unknown data at 29.";
   if(raw_data[30] != IMAXB6_DATA_POS_30)
-    throw err_fixed_byte;
+    throw "Unknown data at 30.";
   if(raw_data[31] != IMAXB6_DATA_POS_31)
-    throw err_fixed_byte;
+    throw "Unknown data at 31.";
   if(raw_data[36] != IMAXB6_DATA_POS_36)
-    throw err_fixed_byte;
+    throw "Unknown data at 36.";
   if(raw_data[37] != IMAXB6_DATA_POS_37)
-    throw err_fixed_byte;
+    throw "Unknown data at 37.";
   if(raw_data[38] != IMAXB6_DATA_POS_38)
-    throw err_fixed_byte;
+    throw "Unknown data at 38.";
   if(raw_data[39] != IMAXB6_DATA_POS_39)
-    throw err_fixed_byte;
+    throw "Unknown data at 39.";
   if(raw_data[56] != IMAXB6_DATA_POS_56)
-    throw err_fixed_byte;
+    throw "Unknown data at 56.";
   if(raw_data[57] != IMAXB6_DATA_POS_57)
-    throw err_fixed_byte;
+    throw "Unknown data at 57.";
   if(raw_data[58] != IMAXB6_DATA_POS_58)
-    throw err_fixed_byte;
+    throw "Unknown data at 58.";
   if(raw_data[59] != IMAXB6_DATA_POS_59)
-    throw err_fixed_byte;
+    throw "Unknown data at 59.";
   if(raw_data[60] != IMAXB6_DATA_POS_60)
-    throw err_fixed_byte;
+    throw "Unknown data at 60.";
   if(raw_data[61] != IMAXB6_DATA_POS_61)
-    throw err_fixed_byte;
+    throw "Unknown data at 61.";
   if(raw_data[62] != IMAXB6_DATA_POS_62)
-    throw err_fixed_byte;
+    throw "Unknown data at 62.";
   if(raw_data[63] != IMAXB6_DATA_POS_63)
-    throw err_fixed_byte;
+    throw "Unknown data at 63.";
   if(raw_data[64] != IMAXB6_DATA_POS_64)
-    throw err_fixed_byte;
+    throw "Unknown data at 64.";
   if(raw_data[65] != IMAXB6_DATA_POS_65)
-    throw err_fixed_byte;
+    throw "Unknown data at 65.";
   if(raw_data[66] != IMAXB6_DATA_POS_66)
-    throw err_fixed_byte;
+    throw "Unknown data at 66.";
   if(raw_data[67] != IMAXB6_DATA_POS_67)
-    throw err_fixed_byte;
+    throw "Unknown data at 67.";
   if(raw_data[68] != IMAXB6_DATA_POS_68)
-    throw err_fixed_byte;
+    throw "Unknown data at 68.";
   if(raw_data[70] != IMAXB6_DATA_POS_70)
-    throw err_fixed_byte;
+    throw "Unknown data at 70.";
   if(raw_data[71] != IMAXB6_DATA_POS_71)
-    throw err_fixed_byte;
+    throw "Unknown data at 71.";
 }
 
 const char *imaxb6_packet::model() {
